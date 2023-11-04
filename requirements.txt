@@ -1,5 +1,5 @@
 amqp==5.1.1
-apollo-shared @ git+https://github.com/erfansahebi/apollo_shared.git@4e9e4d95f216ec9a7b23c2d3f047d8688dc051d8
+apollo-shared @ git+https://github.com/erfansahebi/apollo_shared.git@96c5662ea41cb4416e27e7b9f069fa017f4239e7
 certifi==2023.7.22
 charset-normalizer==3.3.1
 click==8.1.7

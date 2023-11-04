@@ -15,11 +15,11 @@ class SubscribeRSSSchemaResponse(_RSSResponse):
     pass
 
 
-class GetRSSesResponse(_RSSResponse):
+class GetRSSesSchemaResponse(_RSSResponse):
     pass
 
 
-class GetRSSResponse(_RSSResponse):
+class GetRSSSchemaResponse(_RSSResponse):
     pass
 
 
@@ -28,9 +28,56 @@ class _FeedResponse(Schema):
     data = fields.Dict(required=True)
 
 
-class GetFeedsOfSubscribedRSSResponse(_FeedResponse):
+class GetFeedsOfSubscribedRSSSchemaResponse(_FeedResponse):
     pass
 
 
-class GetFeedResponse(_FeedResponse):
+class GetFeedSchemaRequest(Schema):
+    id = fields.Str(required=True)
+
+
+class GetFeedSchemaResponse(_FeedResponse):
     pass
+
+
+class _BookmarksSchema(Schema):
+    id = fields.Str(required=True)
+    feed_id = fields.Str(required=True)
+
+
+class GetBookmarksSchemaResponse(_BookmarksSchema):
+    pass
+
+
+class GetBookmarkSchemaResponse(_BookmarksSchema):
+    pass
+
+
+class AddToBookmarksSchemaRequest(Schema):
+    feed_id = fields.Str(required=True)
+
+
+class AddToBookmarksSchemaResponse(_BookmarksSchema):
+    pass
+
+
+class _CommentSchema(Schema):
+    id = fields.Str(required=True)
+    message = fields.Str(required=True)
+
+
+class GetCommentsOnFeedSchemaResponse(_CommentSchema):
+    pass
+
+
+class GetCommentOnFeedSchemaResponse(_CommentSchema):
+    pass
+
+
+class AddCommentSchemaRequest(Schema):
+    message = fields.Str(required=True)
+
+
+class AddCommentSchemaResponse(Schema):
+    id = fields.Str(required=True)
+    message = fields.Str(required=True)

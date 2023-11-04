@@ -1,5 +1,6 @@
 import functools
 from apollo_shared.rpc.auth import AuthRPC
+from apollo_shared import exception
 from werkzeug import Request
 from nameko.rpc import ServiceRpc
 from gateway.utils import get_context
@@ -18,7 +19,7 @@ class AuthMiddleware(ServiceRpc):
                 context = get_context(request)
 
                 if context['token'] is None:
-                    raise Exception('no token')
+                    raise exception.Unauthorized('unauthorized')
 
                 auth_rpc: AuthRPC = getattr(svc, self.attr_name)
                 authenticate_response = auth_rpc.authenticate(AuthenticateRPC().load({
@@ -44,8 +45,8 @@ class AuthMiddleware(ServiceRpc):
             def decorator(svc, request: Request, *args, **kwargs):
                 context = get_context(request)
 
-                if context.token is not None:
-                    raise Exception('have token')
+                if context.get("token", None) is not None:
+                    raise exception.BadRequest('request has authorization token')
 
                 return func(svc, request, *args, **kwargs)
 

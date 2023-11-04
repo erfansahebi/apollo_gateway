@@ -1,4 +1,5 @@
 from apollo_shared.schema.base import Schema
+from apollo_shared import exception
 from marshmallow import fields, validates_schema
 
 
@@ -16,7 +17,7 @@ class RegisterSchemaRequest(Schema):
     @validates_schema
     def validate_confirm_password(self, data, **kwargs):
         if data['password'] != data['confirm_password']:
-            raise Exception('Your password and confirmation password do not match.')
+            raise exception.BadRequest('your password and confirmation password do not match.')
 
 
 class RegisterSchemaResponse(_AuthenticateSchemaResponse):
