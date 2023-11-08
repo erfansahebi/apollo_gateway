@@ -12,7 +12,6 @@ class RssRPC(RpcProxy, BaseRssRPC):
 
     def setup(self, **kwargs):
         self.rpc = super(RssRPC, self).setup()
-        self.rpc = None
 
     def get_dependency(self, worker_ctx):
         self.rpc = super(RssRPC, self).get_dependency(worker_ctx)

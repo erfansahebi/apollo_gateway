@@ -11,7 +11,6 @@ class AuthRPC(RpcProxy, BaseAuthRPC):
 
     def setup(self, **kwargs):
         self.rpc = super(AuthRPC, self).setup()
-        self.rpc = None
 
     def get_dependency(self, worker_ctx):
         self.rpc = super(AuthRPC, self).get_dependency(worker_ctx)
@@ -25,7 +24,7 @@ class AuthRPC(RpcProxy, BaseAuthRPC):
         return self.rpc.login(data)
 
     def logout(self, data: auth_schema.LogoutRPC) -> None:
-        self.rpc.login(data)
+        self.rpc.logout(data)
 
     def authenticate(self, data: auth_schema.AuthenticateRPC) -> auth_schema.AuthenticateRPCResponse:
         return self.rpc.authenticate(data)
